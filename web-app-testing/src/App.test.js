@@ -1,9 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from '@testing-library/react';
 import App from './App';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+test('renders without crashing', () => {
+  render(<App />);
 });
+
+test('Strike is found', () => {
+  const { getByText } = render(<App />);
+
+  getByText(/strikes/i);
+});
+
+test('Ball is found', () => {
+  const { getByText } = render(<App />);
+
+  getByText(/balls/i);
+})
